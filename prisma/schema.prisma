@@ -28,7 +28,7 @@ model Publication {
   title         String   @unique
   text          String
   dateToPublish DateTime
-  published     Boolean
+  published     Boolean  @default(false)
   socialMedia   String
   createdAt     DateTime @default(now())
   userId        Int

@@ -6,7 +6,7 @@ import {
     IsUrl
   } from 'class-validator';
   
-  export class CreateUserDTO {
+  export class CreateUserDto {
     @IsString()
     @IsNotEmpty()
     name: string;
