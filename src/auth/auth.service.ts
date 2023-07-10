@@ -1,4 +1,4 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { HttpException, Injectable, UnauthorizedException } from '@nestjs/common';
 import { PrismaUser } from 'src/user/repository/implementation/prismaUser.repository';
 import { SignInDto } from './dto/auth-signin.dto';
 import { SignUpDto } from './dto/auth-signup.dto';
@@ -17,6 +17,16 @@ export class AuthService {
 
     async signup(body: SignUpDto) {
         const user = await this.service.create(body);
+        return this.createToken(user);
+    }
+
+    async signin(body: SignInDto) {
+        const user = await this.service.findByEmail(body.email);
+        if(!user) throw new UnauthorizedException('Email or password invalid');
+
+        const validPassword = bcrypt.compareSync(body.password, user.password);
+        if(!validPassword) throw new UnauthorizedException('Email or password invalid');
+
         return this.createToken(user);
     }
 
