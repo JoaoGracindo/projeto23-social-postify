@@ -1,4 +1,4 @@
-import { HttpException, Injectable, UnauthorizedException } from '@nestjs/common';
+import { BadRequestException, HttpException, Injectable, UnauthorizedException } from '@nestjs/common';
 import { PrismaUser } from 'src/user/repository/implementation/prismaUser.repository';
 import { SignInDto } from './dto/auth-signin.dto';
 import { SignUpDto } from './dto/auth-signup.dto';
@@ -38,6 +38,15 @@ export class AuthService {
         );
 
         return { token }
+    }
+
+    checkToken(token: string) {
+        try{
+            const info = this.jwtService.verify(token);
+            return info;
+        } catch (error) {
+            throw new BadRequestException(error);
+        }
     }
 
 }

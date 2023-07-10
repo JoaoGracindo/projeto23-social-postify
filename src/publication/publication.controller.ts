@@ -11,8 +11,8 @@ export class PublicationController {
     return this.publicationService.create(createPublicationDto);
   }
 
-  @Get()
-  findAll() {
-    return this.publicationService.findAll();
-  }
+  // @Get()
+  // findAll() {
+  //   return this.publicationService.findAll();
+  // }
 }
