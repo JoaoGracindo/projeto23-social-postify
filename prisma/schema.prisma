@@ -30,4 +30,6 @@ model Publication {
   published     Boolean
   socialMedia   String
   createdAt     DateTime @default(now())
+
+  @@map("publications")
 }
