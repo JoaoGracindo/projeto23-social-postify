@@ -1,17 +1,16 @@
 import { Injectable } from '@nestjs/common';
 import { CreatePublicationDto } from './dto/create-publication.dto';
+import { PrismaPublication } from './repository/implementation/prismaPublication.repository';
 
 @Injectable()
 export class PublicationService {
-  create(createPublicationDto: CreatePublicationDto) {
-    return 'This action adds a new publication';
+  constructor(private readonly repository: PrismaPublication) {}
+
+  async create(createPublicationDto: CreatePublicationDto) {
+    return await this.repository.addPublication(createPublicationDto);
   }
 
-  findAll() {
-    return `This action returns all publication`;
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} publication`;
+  async findAll(userId: number) {
+    return await this.repository.findAll(userId);
   }
 }

@@ -10,7 +10,6 @@ import { User } from '@prisma/client';
 @Injectable()
 export class AuthService {
     constructor(
-        private readonly repository: PrismaUser,
         private readonly service: UserService,
         private readonly jwtService: JwtService,
         ) {}

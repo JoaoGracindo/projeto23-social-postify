@@ -3,6 +3,7 @@ import {
     IsNotEmpty,
     IsDateString,
     IsUrl,
+    IsInt,
 } from 'class-validator'
 
 export class CreatePublicationDto {
@@ -26,4 +27,8 @@ dateToPublish: string
 @IsNotEmpty()
 @IsString()
 socialMedia: string
+
+@IsNotEmpty()
+@IsInt()
+userId: number
 }
