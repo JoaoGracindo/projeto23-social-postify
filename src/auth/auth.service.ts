@@ -42,7 +42,12 @@ export class AuthService {
 
     checkToken(token: string) {
         try{
-            const info = this.jwtService.verify(token);
+            const info = this.jwtService.verify(
+                token,
+                {
+                    secret: process.env.JWT_SECRET
+                }
+            );
             return info;
         } catch (error) {
             throw new BadRequestException(error);

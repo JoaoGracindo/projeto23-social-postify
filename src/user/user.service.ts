@@ -7,7 +7,7 @@ export class UserService {
   constructor(private readonly userRepository: UserRepository) {}
 
   async create(user: CreateUserDto) {
-    const userExists = this.userRepository.findUserByEmail(user.email);
+    const userExists = await this.userRepository.findUserByEmail(user.email);
     if(userExists) throw new HttpException('User already exists', HttpStatus.CONFLICT);
 
     const hash = bcrypt.hashSync(user.password, 10);

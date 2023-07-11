@@ -1,9 +1,9 @@
 import {
     IsString,
     IsNotEmpty,
-    IsDateString,
     IsUrl,
-    IsInt,
+    MaxLength,
+    IsDateString,
 } from 'class-validator'
 
 export class CreatePublicationDto {
@@ -18,9 +18,10 @@ title: string
 
 @IsNotEmpty()
 @IsString()
-text
+text: string
 
 @IsNotEmpty()
+@MaxLength(10)
 @IsDateString()
 dateToPublish: string
 
@@ -28,7 +29,5 @@ dateToPublish: string
 @IsString()
 socialMedia: string
 
-@IsNotEmpty()
-@IsInt()
 userId: number
 }

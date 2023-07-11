@@ -13,7 +13,7 @@ export class PublicationController {
   create(@Body() createPublicationDto: CreatePublicationDto, @User() user) {
     return this.publicationService.create({
       ...createPublicationDto,
-      userId: user.id
+      userId: user.id,
     });
   }
 
