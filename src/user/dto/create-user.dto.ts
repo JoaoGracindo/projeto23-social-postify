@@ -3,7 +3,8 @@ import {
     IsNotEmpty,
     IsString,
     IsStrongPassword,
-    IsUrl
+    IsUrl,
+    MaxLength
   } from 'class-validator';
   
   export class CreateUserDto {
@@ -21,6 +22,7 @@ import {
     @IsStrongPassword({
       minLength: 6,
     })
+    @MaxLength(20)
     password: string;
 
     @IsString()
